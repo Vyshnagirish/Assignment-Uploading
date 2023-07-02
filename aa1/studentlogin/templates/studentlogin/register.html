@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/style.css' %}" />
+  <script type='text/javascript'>
+
+    function openFile() {
+      document.getElementById('reg-image').click();
+    }
+
+    function updateFileField(filename) {
+      filename = filename.replace("C:\\fakepath\\", "");
+      document.getElementById('reg-image_uploader').value=filename;
+    }
+  </script>
+</head>
+
+<body>
+  <body>
+    <h1> <center>FILE UPLOAD </center></h1><br>
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Registration</h1>
+			</div>
+      <form action="{% url 'studentlogin:register' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Username" id="reg-name" name="username" required>
+				<label class="login-field-icon fui-user" for="reg-name"></label>
+				</div>
+
+				<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="Password" id="reg-pass" name="password" required>
+				<label class="login-field-icon fui-lock" for="reg-pass"></label>
+				</div>
+
+        <div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Email" id="reg-email" name="email" required>
+				<label class="login-field-icon fui-user" for="reg-email"></label>
+				</div>
+
+        <div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Phone Number" id="reg-phone" name="phone" required>
+				<label class="login-field-icon fui-user" for="reg-phone"></label>
+				</div>
+
+        <div class="control-group">
+        <input type="text" class="login-field" value="" placeholder="Profile image" id="reg-image_uploader" onclick=openFile() required>
+				<input type="file" class="login-field" value="" hidden accept="image/*" id="reg-image" name="image" onchange=updateFileField(this.value) required>
+				<label class="login-field-icon fui-user" for="reg-image"></label>
+				</div>
+
+				<input type="submit" class="btn btn-primary btn-large btn-block" value="Register"/>
+        {% if error_message %}<p>{{ error_message }}</p>{% endif %}
+        {% if success_message %}<p>{{ success_message }}</p>{% endif %}
+			  <a class="login-link" href="{% url 'studentlogin:index' %}">Login now</a>
+      </div>
+    </form>
+		</div>
+	</div>
+</body>
+
+
+</body>
+</html>

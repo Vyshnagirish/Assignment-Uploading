@@ -1,0 +1,16 @@
+{% load static %}
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'studentlogin/dashboard_style.css' %}" />
+</head>
+
+<body>
+
+  <p class="message"> You are logged out
+<br>
+<a class="logout-link" href="{% url 'studentlogin:index' %}">Login again?</a>
+  </p>
+</body>
+</html>
